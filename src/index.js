@@ -122,4 +122,3 @@ function renderGallery(elements) {
     const simpleLightbox = new SimpleLightbox('.gallery a');
 }
 
-console.log();
