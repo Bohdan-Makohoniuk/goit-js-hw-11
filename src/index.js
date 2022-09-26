@@ -121,3 +121,5 @@ function renderGallery(elements) {
     refs.divEl.insertAdjacentHTML('beforeend', markup);
     const simpleLightbox = new SimpleLightbox('.gallery a');
 }
+
+console.log();
