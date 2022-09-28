@@ -1,10 +1,10 @@
-// Подключаем библиотеки
-// import './css/styles.css';
+// Підключення бібліотеки
 import Notiflix from 'notiflix';
-// import SimpleLightbox from 'simplelightbox';
-// import "simplelightbox/dist/simple-lightbox.min.css";
+import SimpleLightbox from 'simplelightbox';
+import "simplelightbox/dist/simple-lightbox.min.css";
+// import renderGallery from './js/renderGallery';
 import NewsApiGalleryService from './js/searchQuery';
-// Достаём елементы
+// Посилання на інтерактивні елементи
 const refs = {
     searchForm: document.querySelector('#search-form'),
     divEl: document.querySelector('.gallery'),
@@ -12,26 +12,26 @@ const refs = {
     startBtn: document.querySelector('button[data-start]'),
     inputform: document.querySelector('input')
 }
-
+// Лічильник (початкове значення)
 let isShown = 0;
 
-//Переменная , чтоб получить обьект с методами и свойствами
+
 const GalleryEl = new NewsApiGalleryService();
-// Работа кнопки при сабмите формы
+// Слухач подій для кнопки submit та onFormSubmit функція з логікою роботи 
 refs.searchForm.addEventListener('submit', onFormSubmit);
-// Работа кнопки при Добавить ещё
+// Функція та логіка роботи для кнопки ще 
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
-// Функция при при сабмите формы
+// Функція при відправці форми 
 async function onFormSubmit(e) {
     e.preventDefault();
 
-// Делаем не активную кнопку
+// за змовчюванням не активна
     if (e.currentTarget.elements.searchQuery.value === '') {
         return innerHTML = '';
      }
        
-    // Записуется значения инпута searchQuery
+    // Оприділяє значення поля вводу searchQuery
     GalleryEl.query = e.target.elements.searchQuery.value.trim();
     isShown = 0;
     refs.divEl.innerHTML = '';
@@ -40,7 +40,7 @@ async function onFormSubmit(e) {
 
 }
 
-// Функция при Добавить ещё
+
 function onLoadMore() {
     GalleryEl.incrementPage();
     fetchGallery();
@@ -48,14 +48,14 @@ function onLoadMore() {
 }
  
 async function fetchGallery() {
-        // Скрываем кнопку
+        
     refs.loadMoreBtn.classList.add('is-hidden');
     
-    // refs.startBtn.disabled = false;
+
     const response = await GalleryEl.fetchGallery();
     const { hits, total } = response;
 
-    // Если бэкенд возвращает пустой массив, значит ничего подходящего найдено небыло
+    
     if (!hits.length) {
         Notiflix.Notify.failure(
             'Sorry, there are no images matching your search query. Please try again.'
@@ -67,19 +67,18 @@ async function fetchGallery() {
     isShown += hits.length;
 
     if (isShown < total) {
-        // Показывае кнопку
+        
         refs.loadMoreBtn.classList.remove('is-hidden');
 
     }
-    // Если пользователь дошел до конца коллекции, пряч кнопку и выводи уведомление с текстом:
+    
     if (isShown >= total) {
         Notiflix.Notify.info(
             'We re sorry, but you have reached the end of search results.'
         );
     }
 }
-
-// Рисуем карточки
+// Рендер карточки
 function renderGallery(elements) {
     console.log(elements);
     const markup = elements.map(({
@@ -117,8 +116,8 @@ function renderGallery(elements) {
             </a>`;
     })
         .join('');
-    // Добавляем на галерею карточек библиотеку SimpleLightbox
+    // Додаю  Бібліотеку SimpleLightbox
     refs.divEl.insertAdjacentHTML('beforeend', markup);
-    // const simpleLightbox = new SimpleLightbox('.gallery a');
+    const simpleLightbox = new SimpleLightbox('.gallery a');
 }
 
