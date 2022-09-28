@@ -1,5 +1,5 @@
 import axios from 'axios';
-// const axios = require('axios').default;
+const axios = require('axios').default;
 
 //Робота з API
 // class NewsApiGalleryService відповідає за запит на API

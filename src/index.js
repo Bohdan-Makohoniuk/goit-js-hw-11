@@ -119,6 +119,6 @@ function renderGallery(elements) {
         .join('');
     // Добавляем на галерею карточек библиотеку SimpleLightbox
     refs.divEl.insertAdjacentHTML('beforeend', markup);
-    const simpleLightbox = new SimpleLightbox('.gallery a');
+    // const simpleLightbox = new SimpleLightbox('.gallery a');
 }
 
