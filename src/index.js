@@ -1,10 +1,10 @@
-// Підключення бібліотеки
+// // Підключення бібліотеки
+import './css/galery.css';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import "simplelightbox/dist/simple-lightbox.min.css";
-// import renderGallery from './js/renderGallery';
 import NewsApiGalleryService from './js/searchQuery';
-// Посилання на інтерактивні елементи
+// // Посилання на інтерактивні елементи
 const refs = {
     searchForm: document.querySelector('#search-form'),
     divEl: document.querySelector('.gallery'),
@@ -12,26 +12,26 @@ const refs = {
     startBtn: document.querySelector('button[data-start]'),
     inputform: document.querySelector('input')
 }
-// Лічильник (початкове значення)
+// // Лічильник (початкове значення)
 let isShown = 0;
-
+const simpleLightbox = new SimpleLightbox('.gallery a');
 
 const GalleryEl = new NewsApiGalleryService();
-// Слухач подій для кнопки submit та onFormSubmit функція з логікою роботи 
+// // Слухач подій для кнопки submit та onFormSubmit функція з логікою роботи 
 refs.searchForm.addEventListener('submit', onFormSubmit);
-// Функція та логіка роботи для кнопки ще 
+// // Функція та логіка роботи для кнопки ще 
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
-// Функція при відправці форми 
+// // Функція при відправці форми 
 async function onFormSubmit(e) {
     e.preventDefault();
 
-// за змовчюванням не активна
+// // за змовчюванням не активна
     if (e.currentTarget.elements.searchQuery.value === '') {
         return innerHTML = '';
      }
        
-    // Оприділяє значення поля вводу searchQuery
+//     // Оприділяє значення поля вводу searchQuery
     GalleryEl.query = e.target.elements.searchQuery.value.trim();
     isShown = 0;
     refs.divEl.innerHTML = '';
@@ -53,9 +53,11 @@ async function fetchGallery() {
     
 
     const response = await GalleryEl.fetchGallery();
-    const { hits, total } = response;
-
-    
+    const { hits, totalHits } = response;
+    // isShown = Math.ceil(totalHits/40)
+    // if (searchQuery.query === isShown) {
+    //     refs.loadMoreBtn.classList.add('is-hidden');
+    // }
     if (!hits.length) {
         Notiflix.Notify.failure(
             'Sorry, there are no images matching your search query. Please try again.'
@@ -66,13 +68,13 @@ async function fetchGallery() {
 
     isShown += hits.length;
 
-    if (isShown < total) {
+    if (isShown < totalHits) {
         
         refs.loadMoreBtn.classList.remove('is-hidden');
 
     }
     
-    if (isShown >= total) {
+    if (isShown >= totalHits) {
         Notiflix.Notify.info(
             'We re sorry, but you have reached the end of search results.'
         );
@@ -116,8 +118,6 @@ function renderGallery(elements) {
             </a>`;
     })
         .join('');
-    // Додаю  Бібліотеку SimpleLightbox
+    
     refs.divEl.insertAdjacentHTML('beforeend', markup);
-    const simpleLightbox = new SimpleLightbox('.gallery a');
 }
-

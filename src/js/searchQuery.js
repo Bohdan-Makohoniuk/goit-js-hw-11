@@ -34,7 +34,7 @@ export default class NewsApiGalleryService {
     set query(newQuery) {
         this.searchQuery = newQuery
     }
-
+    
 }
     
     
