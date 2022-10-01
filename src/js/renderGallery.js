@@ -1,3 +1,4 @@
+
 // export default function renderGallery(elements) {
 //     console.log(elements);
 //     const markup = elements.map(({
@@ -36,6 +37,5 @@
 //     })
 //         .join('');
     
-//     refs.divEl.insertAdjacentHTML('beforeend', markup);
-//     const simpleLightbox = new SimpleLightbox('.gallery a');
-// }
+//     refs.divEl.insertAdjacentHTML('beforeend', markup);  
+//     }

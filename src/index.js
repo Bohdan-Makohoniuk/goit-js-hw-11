@@ -4,6 +4,7 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import "simplelightbox/dist/simple-lightbox.min.css";
 import NewsApiGalleryService from './js/searchQuery';
+// import renderGallery from './js/renderGallery'
 // // Посилання на інтерактивні елементи
 const refs = {
     searchForm: document.querySelector('#search-form'),
@@ -17,6 +18,7 @@ let isShown = 0;
 const simpleLightbox = new SimpleLightbox('.gallery a');
 
 const GalleryEl = new NewsApiGalleryService();
+
 // // Слухач подій для кнопки submit та onFormSubmit функція з логікою роботи 
 refs.searchForm.addEventListener('submit', onFormSubmit);
 // // Функція та логіка роботи для кнопки ще 
@@ -81,6 +83,8 @@ async function fetchGallery() {
     }
 }
 // Рендер карточки
+
+
 function renderGallery(elements) {
     console.log(elements);
     const markup = elements.map(({

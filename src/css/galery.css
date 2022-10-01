@@ -7,7 +7,8 @@ body {
         Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #7b7fb5a8;
+    background-image: url(//img5.goodfon.ru/original/1920x1200/a/21/world-3d-terra-the-world-our-globe-our-planet-earth-our-eart.jpg);
+    background-repeat: no-repeat;
     color: #212121;
     line-height: 1.5;
 }
@@ -19,7 +20,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 input {
@@ -30,17 +32,17 @@ input {
     border: none;
     border-radius: 10px;
     transition: 0.5s ease all;
-    border: 2px solid rgba(185, 78, 35, 0.718);
+    border: 2px solid rgba #afb1b8;
 }
 
 input:hover {
     transform: scale(1.1);
 }
 
-/* input:focus {
+input:focus {
   border: none;
-  border: 2px solid rgba(241, 7, 7, 0.718);
-} */
+  border: 2px solid rgba #afb1b8;
+}
 
 /* Кнопки */
 .is-hidden {
@@ -51,13 +53,13 @@ button {
     width: 120px;
     height: 50px;
     font-size: 20px;
-    margin-left: 20px;
+    margin-left: 30px;
     background-color: white;
     color: black;
     border-radius: 10px;
     border: none;
-    transition: 0.5s ease all;
-    border: 2px solid rgba(185, 78, 35, 0.718);
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    border: 2px solid rgba #afb1b8;
 }
 
 button:hover {
@@ -102,7 +104,7 @@ button:hover {
 img {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 p {
@@ -111,11 +113,10 @@ p {
 
 .info {
     display: flex;
-    border: 2px solid rgb(211, 12, 12);
     padding: 5px;
     text-align: center;
     background-color: #e7e2f0;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .info-item {
@@ -127,11 +128,13 @@ p {
     margin-left: 0;
 }
 
+.info-item:hover {
+    transform: scale(0.8);
+    transition:  0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
 .gallery__link {
     text-decoration: none;
     transition: 0.5s ease all;
 }
 
-.gallery__link:hover {
-    transform: scale(1.1);
-}
